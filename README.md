@@ -10,7 +10,7 @@ python main.py --train-mode DKP --batch-size 50 --epochs 100
 
 *Results below are an average of four randomly initialized trials trained for 50 epochs.*
 
-|               |     Accuracy    |
+|               |  Test Accuracy  |
 | ------------- | --------------- |
 |      DKP      | 67.52% ± 0.002  |
 |      DFA      | 61.02% ± 0.006  |
