@@ -1,5 +1,5 @@
 # dkp_cifar10
-This repository is a convolutional implementation of the Direct Kolen Pollack method, as well as Direct Feedback Alignment, using PyTorch. DKP is a combination of the two alternative credit assignment learning algorithms Direct Feedback Alignment(DFA) and the Kolen Pollack(KP) method as proposed by Akrout et al.
+This repository is an implementation of the Direct Kolen Pollack method, as well as Direct Feedback Alignment, using PyTorch into a convolutional network. DKP is a combination of the two alternative credit assignment learning algorithms Direct Feedback Alignment(DFA) and the Kolen Pollack(KP) method as proposed by Akrout et al.
 
 main.py usage example:
 ```
