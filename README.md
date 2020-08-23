@@ -8,7 +8,7 @@ python main.py --train-mode DKP --batch-size 50 --epochs 100
 
 ### Top-1 Accuracy on CIFAR10
 
-*Results below are an average of four randomly initialized trials trained for 50 epochs.*
+*Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.*
 
 |               |  Test Accuracy  |
 | ------------- | --------------- |
