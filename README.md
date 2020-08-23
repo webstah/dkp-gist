@@ -8,7 +8,7 @@ python main.py --train-mode DKP --batch-size 50 --epochs 100
 
 #### Top-1 Accuracy on CIFAR10:
 
-*Results below are an average of four randomly initialized trials trained for 50 epochs.*
+*Results below are an average of four randomly initialized trials trained for 50 epochs. The learning rate on the forward weights is set to 5e-4 for all learning algorithms. The SGD optimizer is used with the momentum set to 0.9 and nesterov enabled.*
 
 |               |  Test Accuracy  |
 | ------------- | --------------- |
