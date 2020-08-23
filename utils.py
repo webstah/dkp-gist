@@ -35,7 +35,7 @@ class OutputHookFunction(autograd.Function):
 
 
 class DFATrainingHook(nn.Module):
-    #This training hook calculates and injects the gradients made by DFA
+    #This training hook calculates and injects the gradients made by DKP or DFA
     def __init__(self, train_mode):
         super(DFATrainingHook, self).__init__()
         self.train_mode = train_mode
