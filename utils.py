@@ -34,27 +34,6 @@ class OutputHookFunction(autograd.Function):
         return grad_output, None
 
 
-class TestTrainingHook(nn.Module):
-    #Used for handling the gradients for the DFA plus single layer backprop method
-    def __init__(self):
-        super(TestTrainingHook, self).__init__()
-
-    def forward(self, input):
-        return TestHookFunction.apply(input)
-
-class TestHookFunction(autograd.Function):
-    @staticmethod
-    def forward(ctx, input):
-        ctx.save_for_backward(input)
-        return input
-
-    @staticmethod
-    def backward(ctx, grad_output):
-        input = ctx.saved_variables
-        print(torch.mean(grad_output))
-        return grad_output, None
-
-
 class DFATrainingHook(nn.Module):
     #This training hook calculates and injects the gradients made by DFA
     def __init__(self, train_mode):
@@ -115,10 +94,3 @@ class DFAHookFunction(autograd.Function):
 
         return grad_output, None, None, None, None
 
-
-        # B_forward_pred = layer_out_view.mm(B_view.t())
-        # B_backward_pred = output_view.mm(B_view)
-        # B_backward_error = (B_backward_pred - layer_out_view)
-        # B_forward_error = (B_forward_pred - output_view)
-        # backward_grad = output_view.t().mm(B_backward_error)
-        # forward_grad = layer_out_view.t().mm(B_forward_error).t()
