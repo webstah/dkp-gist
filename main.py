@@ -72,8 +72,8 @@ def test(model, device, test_loader, train_loader):
 def main():
     # Training settings
     parser = argparse.ArgumentParser(description='Pytorch Implementation of DFA and Learned Direct Connections')
-    parser.add_argument('--batch-size', type=int, default=64, metavar='N',
-                        help='input batch size for training (default: 64)')
+    parser.add_argument('--batch-size', type=int, default=50, metavar='N',
+                        help='input batch size for training (default:50)')
     parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                         help='input batch size for testing (default: 1000)')
     parser.add_argument('--epochs', type=int, default=100, metavar='N',
