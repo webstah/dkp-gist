@@ -1,5 +1,5 @@
 # Direct Kolen Pollack
-This repository is an implementation of the Direct Kolen Pollack(DKP) method, as well as Direct Feedback Alignment(DFA), using PyTorch. The network used to test each method consists of two convolutional layers followed by two fully connected layers, and the dataset trained on is CIFAR10. DKP is a combination of two alternative credit assignment learning algorithms: DFA and the Kolen Pollack(KP) method as proposed by Akrout et al.
+This repository is an implementation of the Direct Kolen Pollack(DKP) method, as well as Direct Feedback Alignment(DFA), using PyTorch. The network used to test each method consists of two convolutional layers followed by two fully connected layers, and the dataset trained on is CIFAR10. DKP is a combination of two alternative credit assignment learning algorithms: DFA and the Kolen Pollack(KP) method as adapted by Akrout et al.
 
 main.py usage example:
 ```
