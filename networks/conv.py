@@ -51,7 +51,6 @@ class ConvNetwork(nn.Module):
 
         if x.requires_grad:
             x = self.output_hook(x, self.grad_at_output)
-            self.network_output.data.copy_(x.data)
-
+            self.network_output[:x.shape[0], :].data.copy_(x.data)
 
         return x
