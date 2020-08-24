@@ -6,7 +6,7 @@ main.py usage example:
 python main.py --train-mode DKP --batch-size 50 --epochs 100
 ```
 ### Direct Feedback Alignment vs Direct Kolen Pollack
-Both **DFA** and **DKP** make use of direct connection from the output of the network to each layer in the backwards path. This attribute allows for the parallelization of the backwards pass, also refered to as *backwards unlocking*, meaning that each layer's gradient can be calculated and updated in parallel with another.
+Both **DFA** and **DKP** make use of direct connections from the output of the network to each layer in the backwards path. This attribute allows for the parallelization of the backwards pass, also refered to as *backwards unlocking*, meaning that each layer's gradient can be calculated and updated in parallel with another.
 
 In **DFA**, <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> is a fixed random weight matrix that projects the gradient at the output of a network to the output of the layer <img src="https://render.githubusercontent.com/render/math?math=\ell">. Just as it is with backpropagation, the learning signal at the output of the network <img src="https://render.githubusercontent.com/render/math?math=\delta_{k}">, where <img src="https://render.githubusercontent.com/render/math?math=f'()"> is the derivative of the activation function, would be calculated in the following way.
 <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\delta_{k} = error\odot f'(a_{k})"></p></br>
