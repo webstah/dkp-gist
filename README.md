@@ -13,7 +13,7 @@ Then, the learning signal at some layer <img src="https://render.githubuserconte
 <br/><img src="https://render.githubusercontent.com/render/math?math=\delta_{\ell-1} = \delta_{k}\cdot B_{\ell}\odot f'(a_{\ell-1})">
   
 As for **DKP**, all of the rules above remain the same, however <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> is no longer a fixed matrix. We will update the backward matrices using the following rule.
-<br/><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - a_{\k}^T\cdot a_{\ell}">
+<br/><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - a_{\k}^T\cdot a_{\ell - 1}">
 
 ### Top-1 Accuracy on CIFAR10
 
