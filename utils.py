@@ -29,13 +29,13 @@ class OutputHookFunction(autograd.Function):
         grad_at_output = ctx.in1
         input = ctx.saved_variables
 
-        grad_at_output.data.copy_(grad_output.data)
+        grad_at_output[:grad_output.shape[0], :].data.copy_(grad_output.data)
 
         return grad_output, None
 
 
 class DFATrainingHook(nn.Module):
-    #This training hook calculates and injects the gradients made by DKP or DFA
+    #This training hook calculates and injects the gradients made by DFA
     def __init__(self, train_mode):
         super(DFATrainingHook, self).__init__()
         self.train_mode = train_mode
@@ -77,6 +77,8 @@ class DFAHookFunction(autograd.Function):
         train_mode                = ctx.in3
         input, backward_weights   = ctx.saved_variables
 
+        grad_at_output = grad_at_output[:grad_output.shape[0], :]
+
         if train_mode == 'DFA':
             B_view = backward_weights.view(-1, prod(backward_weights.shape[1:]))
             grad_output_est = grad_at_output.mm(B_view).view(grad_output.shape)
@@ -93,4 +95,3 @@ class DFAHookFunction(autograd.Function):
             return grad_output_est, grad_weights_B, None, None, None
 
         return grad_output, None, None, None, None
-
