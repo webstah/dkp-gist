@@ -7,13 +7,13 @@ python main.py --train-mode DKP --batch-size 50 --epochs 100
 ```
 ### Direct Feedback Alignment vs Direct Kolen Pollack
 In **DFA**, <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> is a fixed random weight matrix that projects the gradient at the output of a network to the output of the layer <img src="https://render.githubusercontent.com/render/math?math=\ell">. For reference, the learning signal at the output of the network <img src="https://render.githubusercontent.com/render/math?math=\delta_{k}">, where <img src="https://render.githubusercontent.com/render/math?math=f'()"> is the derivative of the activation function, would be calculated in the following way.
-<br/><img src="https://render.githubusercontent.com/render/math?math=\delta_{k} = error\odot f'(a_{k})">
+<p align="center"><img src="https://render.githubusercontent.com/render/math?math=\delta_{k} = error\odot f'(a_{k})"></p>
 
 Then, the learning signal at some layer <img src="https://render.githubusercontent.com/render/math?math=\ell - 1">, as prescribed by DFA(and DKP), would be calculated in the following way.
-<br/><img src="https://render.githubusercontent.com/render/math?math=\delta_{\ell-1} = \delta_{k}\cdot B_{\ell}\odot f'(a_{\ell-1})">
+<p align="center"><img src="https://render.githubusercontent.com/render/math?math=\delta_{\ell-1} = \delta_{k}\cdot B_{\ell}\odot f'(a_{\ell-1})"></p>
   
 As for **DKP**, all of the rules above remain the same, however <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> is no longer a fixed matrix. We will update the backward matrices using the following rule.
-<br/><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - a_{\k}^T\cdot a_{\ell - 1}">
+<p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - a_{\k}^T\cdot a_{\ell - 1}"></p>
 
 ### Top-1 Accuracy on CIFAR10
 
