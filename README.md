@@ -17,6 +17,12 @@ Then, the learning signal at some layer <img src="https://render.githubuserconte
 As for **DKP**, the rules above remain the same, however <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> is no longer a fixed matrix. We will update the backward matrices using the following update rule.
 <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - \delta_{k}^T\cdot a_{\ell - 1}"></p>
 
+### Adressing Stability Issues with DKP and DFA
+under construction...
+- importance of batch normalization
+- weight decay and optimizer for backward weights
+- lr scheduler for updates to backward parameters is essential
+
 ### Top-1 Accuracy on CIFAR10
 
 *Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.*
