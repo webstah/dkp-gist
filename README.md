@@ -33,3 +33,4 @@ As for **DKP**, the rules above remain the same, however <img src="https://rende
 - <a href="http://papers.nips.cc/paper/6441-direct-feedback-alignment-provides-learning-in-deep-neural-networks.pdf" target="_blank">Direct Feedback Alignment Provides Learning in
 Deep Neural Networks, Nøkland</a>
 - <a href="https://arxiv.org/pdf/1904.05391.pdf" target="_blank">Deep Learning without Weight Transport, Akrout et al.</a>
+- <a href="https://ieeexplore.ieee.org/document/374486" target="_blank">Backpropagation without weight transport, Kolen et al.</a>
