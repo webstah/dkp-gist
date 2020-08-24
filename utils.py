@@ -32,7 +32,7 @@ class OutputHookFunction(autograd.Function):
         grad_at_output[:grad_output.shape[0], :].data.copy_(grad_output.data)
 
         return grad_output, None
-
+    
 
 class DFATrainingHook(nn.Module):
     #This training hook calculates and injects the gradients made by DFA
