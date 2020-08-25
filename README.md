@@ -10,6 +10,9 @@ alexnet/main.py usage example:
 ```
 python main.py -a alexnet --dist-url 'tcp://127.0.0.1:8080' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0 /home/user01/datasets/ILSVRC2012 --dataset cifar100 --train-mode DFA
 ```
+Code for alexnet/main.py and alexnet/models/alexnet.py borrows heavily from the repositories below:
+* https://github.com/pytorch/examples/tree/master/imagenet
+* https://github.com/pytorch/vision/tree/master/torchvision/models
 
 ### Direct Feedback Alignment vs Direct Kolen Pollack
 Both **DFA** and **DKP** make use of direct connections from the output of the network to each layer in the backward path. This attribute allows for the parallelization of the backwards pass, also refered to as *backwards unlocking*, meaning that each layer's gradient can be calculated and updated in parallel with another.
