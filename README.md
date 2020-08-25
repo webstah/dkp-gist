@@ -1,16 +1,16 @@
 # Direct Kolen Pollack
 This repository is an implementation of the Direct Kolen Pollack(DKP) method, as well as Direct Feedback Alignment(DFA), using PyTorch. DKP is a combination of two alternative credit assignment learning algorithms: DFA and the Kolen Pollack(KP) method as adapted by Akrout et al. The network used for testing each method on CIFAR10 consists of two convolutional layers followed by two fully connected layers. For testing on CIFAR100 we use AlexNet with batch normalization after each convolutional layer.
 
-main.py usage example:
+*main.py* usage example:
 ```
 python main.py --train-mode DKP --batch-size 50 --epochs 100
 ```
 
-alexnet/main.py usage example:
+*alexnet/main.py* usage example:
 ```
 python main.py -a alexnet --dist-url 'tcp://127.0.0.1:8080' --dist-backend 'nccl' --multiprocessing-distributed --world-size 1 --rank 0 /home/user01/datasets/ILSVRC2012 --dataset cifar100 --train-mode DFA
 ```
-Code for alexnet/main.py and alexnet/models/alexnet.py borrows heavily from the repositories below:
+Code for *alexnet/main.py* and *alexnet/models/alexnet.py* borrows heavily from the repositories below:
 * https://github.com/pytorch/examples/tree/master/imagenet
 * https://github.com/pytorch/vision/tree/master/torchvision/models
 
