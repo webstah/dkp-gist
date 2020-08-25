@@ -32,15 +32,15 @@ under construction...
 - weight decay and optimizer for backward weights
 - lr scheduler for updates to backward parameters is essential
 
-### Top-1 Accuracy on CIFAR10
+### Test Accuracy on CIFAR10
 
 *Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.*
 
-|               |  Test Accuracy  |
-| ------------- | --------------- |
-|      DKP      | 67.52% ± 0.002  |
-|      DFA      | 61.02% ± 0.006  |
-|      BP       | 70.47% ± 0.004  |
+|               |  Top-1 Accuracy  |
+| ------------- | ---------------- |
+|      DKP      | 67.52% ± 0.002   |
+|      DFA      | 61.02% ± 0.006   |
+|      BP       | 70.47% ± 0.004   |
 
 
 #### References
