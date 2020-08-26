@@ -17,21 +17,20 @@ class AlexNet(nn.Module):
         self.batch_size = batch_size
 
         self.grad_at_output = nn.Parameter(torch.zeros([batch_size, num_classes]), requires_grad=False)
+        self.network_output = nn.Parameter(torch.zeros([batch_size, num_classes]), requires_grad=False)
 
         self.features = conv_features(train_mode)
-        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
+
         self.classifier = linear_classifier(train_mode, num_classes)
 
         self.output_hook = OutputTrainingHook()
 
     def forward(self, x, target):
-        x = self.features(x, self.grad_at_output)
-        x = self.avgpool(x)
-        x = torch.flatten(x, 1)
-        x = self.classifier(x, self.grad_at_output)
-
+        x = self.features(x, self.grad_at_output, self.network_output)
+        x = self.classifier(x, self.grad_at_output, self.network_output)
         if x.requires_grad:
             x = self.output_hook(x, self.grad_at_output)
+            self.network_output[:x.shape[0], :].data.copy_(x.data)
 
         return x
 
@@ -43,12 +42,12 @@ class conv_features(nn.Module):
         self.conv_1 = nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2)
         self.pool_1 = nn.MaxPool2d(kernel_size=3, stride=2)
         self.bn_1 = nn.BatchNorm2d(64)
-        self.conv_1_dfa = DFATrainingHook(train_mode, [100, 64, 55, 55])
+        self.conv_1_dfa = DFATrainingHook(train_mode, [100, 64, 27, 27])
 
         self.conv_2 = nn.Conv2d(64, 192, kernel_size=5, padding=2)
         self.pool_2  = nn.MaxPool2d(kernel_size=3, stride=2)
         self.bn_2 = nn.BatchNorm2d(192)
-        self.conv_2_dfa = DFATrainingHook(train_mode, [100, 192, 27, 27])
+        self.conv_2_dfa = DFATrainingHook(train_mode, [100, 192, 13, 13])
 
         self.conv_3 = nn.Conv2d(192, 384, kernel_size=3, padding=1)
         self.bn_3 = nn.BatchNorm2d(384)
@@ -61,38 +60,47 @@ class conv_features(nn.Module):
         self.conv_5 = nn.Conv2d(256, 256, kernel_size=3, padding=1)
         self.bn_5 = nn.BatchNorm2d(256)
         self.pool_5 = nn.MaxPool2d(kernel_size=3, stride=2)
-        self.conv_5_dfa = DFATrainingHook(train_mode, [100, 256, 13, 13])
+        self.conv_5_dfa = DFATrainingHook(train_mode, [100, 256, 6, 6])
+
+        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
+
+        self.drop = nn.Dropout()
 
         self.act = nn.ReLU(inplace=True)
 
-    def forward(self, x, grad_at_output):
+    def forward(self, x, grad_at_output, network_output):
         x = self.conv_1(x)
         x = self.bn_1(x)
         x = self.act(x)
-        x = self.conv_1_dfa(x, grad_at_output)
         x = self.pool_1(x)
+        x = self.conv_1_dfa(x, grad_at_output, network_output)
 
         x = self.conv_2(x)
         x = self.bn_2(x)
         x = self.act(x)
-        x = self.conv_2_dfa(x, grad_at_output)
         x = self.pool_2(x)
+        x = self.conv_2_dfa(x, grad_at_output, network_output)
 
         x = self.conv_3(x)
         x = self.bn_3(x)
         x = self.act(x)
-        x = self.conv_3_dfa(x, grad_at_output)
+        x = self.conv_3_dfa(x, grad_at_output, network_output)
 
         x = self.conv_4(x)
         x = self.bn_4(x)
         x = self.act(x)
-        x = self.conv_4_dfa(x, grad_at_output)
+        x = self.conv_4_dfa(x, grad_at_output, network_output)
 
         x = self.conv_5(x)
         x = self.bn_5(x)
         x = self.act(x)
-        x = self.conv_5_dfa(x, grad_at_output)
         x = self.pool_5(x)
+
+        x = self.avgpool(x)
+        x = torch.flatten(x, 1)
+        x = self.drop(x)
+
+        x = self.conv_5_dfa(x, grad_at_output, network_output)
 
         return x
 
@@ -111,18 +119,15 @@ class linear_classifier(nn.Module):
 
         self.linear_3 = nn.Linear(4096, num_classes)
 
-    def forward(self, x, grad_at_output):
-        x = self.drop(x)
-
+    def forward(self, x, grad_at_output, network_output):
         x = self.linear_1(x)
         x = self.act(x)
-        x = self.linear_1_dfa(x, grad_at_output)
-
         x = self.drop(x)
+        x = self.linear_1_dfa(x, grad_at_output, network_output)
 
         x = self.linear_2(x)
         x = self.act(x)
-        x = self.linear_2_dfa(x, grad_at_output)
+        x = self.linear_2_dfa(x, grad_at_output, network_output)
 
         x = self.linear_3(x)
 
