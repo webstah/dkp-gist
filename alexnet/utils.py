@@ -34,27 +34,6 @@ class OutputHookFunction(autograd.Function):
         return grad_output, None
 
 
-class TestTrainingHook(nn.Module):
-    #Used for handling the gradients for the DFA plus single layer backprop method
-    def __init__(self):
-        super(TestTrainingHook, self).__init__()
-
-    def forward(self, input):
-        return TestHookFunction.apply(input)
-
-class TestHookFunction(autograd.Function):
-    @staticmethod
-    def forward(ctx, input):
-        ctx.save_for_backward(input)
-        return input
-
-    @staticmethod
-    def backward(ctx, grad_output):
-        input = ctx.saved_variables
-        print(torch.mean(grad_output))
-        return grad_output, None
-
-
 class DFATrainingHook(nn.Module):
     #This training hook calculates and injects the gradients made by DFA
     def __init__(self, train_mode, dim):
@@ -66,37 +45,42 @@ class DFATrainingHook(nn.Module):
         if self.train_mode in ['BP', 'DFA']:
             self.backward_weights.requires_grad = False
 
-    def forward(self, input, grad_at_output):
-        return DFAHookFunction.apply(input, self.backward_weights, grad_at_output, self.train_mode)
+    def forward(self, input, grad_at_output, network_output):
+        # if torch.cuda.current_device() == 0:
+        #     print(input.shape)
+        return DFAHookFunction.apply(input, self.backward_weights, grad_at_output, network_output, self.train_mode)
 
 class DFAHookFunction(autograd.Function):
     @staticmethod
-    def forward(ctx, input, backward_weights, grad_at_output, train_mode):
+    def forward(ctx, input, backward_weights, grad_at_output, network_output, train_mode):
         ctx.save_for_backward(input, backward_weights)
         ctx.in1 = grad_at_output
-        ctx.in2 = train_mode
+        ctx.in2 = network_output
+        ctx.in3 = train_mode
         return input
 
     @staticmethod
     def backward(ctx, grad_output):
         grad_at_output            = ctx.in1
-        train_mode                = ctx.in2
+        network_output            = ctx.in2
+        train_mode                = ctx.in3
         input, backward_weights   = ctx.saved_variables
 
         grad_at_output = grad_at_output[:grad_output.shape[0], :]
+        network_output = network_output[:grad_output.shape[0], :]
 
         if train_mode == 'DFA':
             B_view = backward_weights.view(-1, prod(backward_weights.shape[1:]))
             grad_output_est = grad_at_output.mm(B_view).view(grad_output.shape)
-            return grad_output_est, None, None, None
+            return grad_output_est, None, None, None, None
 
         elif train_mode == 'DKP':
             layer_out_view = input.view(-1, prod(input.shape[1:]))
             B_view = backward_weights.view(-1, prod(backward_weights.shape[1:]))
 
-            grad_output_est = grad_at_output.mm(B_view).view(grad_output.shape)
-            grad_weights_B = grad_at_output.t().mm(layer_out_view).view(backward_weights.shape)
+            grad_output_est = grad_at_output.mm(B_view)
+            grad_weights_B = 0.5 * grad_at_output.t().mm(layer_out_view) + 0.5 * network_output.t().mm(grad_output_est)
 
-            return grad_output_est, grad_weights_B, None, None
+            return grad_output_est.view(grad_output.shape), grad_weights_B.view(backward_weights.shape), None, None, None
 
         return grad_output, None, None, None
