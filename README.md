@@ -28,6 +28,7 @@ As for **DKP**, the rules above remain the same, however <img src="https://rende
 
 While it does not seem to make much of a difference in our smaller network for training on CIFAR10(not tested rigorously at the moment), we found that by adding an additional term to our update rule for <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> we could gain significant performance gains in our AlexNet experiments. The new update rules are as follows.
 <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - (\delta_{k}^T\cdot a_{\ell - 1} %2B a_{k}^T\cdot\delta_{\ell - 1})"></p>
+For now, we will refer to this version of DKP as **FB-DKP** since it seems to have *forwards and backwards* gradient alignment in its update rules for the backward parameters.
 
 #### Adressing Stability Issues with DKP and DFA
 under construction...
@@ -44,6 +45,18 @@ under construction...
 |      DKP      | 67.52% ± 0.002   |
 |      DFA      | 61.02% ± 0.006   |
 |      BP       | 70.47% ± 0.004   |
+
+
+### Test Accuracy on CIFAR100
+
+*Below show the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization after 90 epochs (more trials will be run in the near future).*
+
+|               |  Top-1 Accuracy  |  Top-5 Accuracy  |
+| ------------- | ---------------- | ---------------- |
+|     DKP       |      --.--%      |      --.--%      |
+|     FB-DKP    |      34.14%      |      65.16%      |
+|     DFA       |      < 10%       |      < 10%       |
+|     BP        |      66.40%      |      88.75%      |
 
 
 #### References
