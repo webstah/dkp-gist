@@ -306,12 +306,12 @@ def main_worker(gpu, ngpus_per_node, args):
                 forward_params.append(param)
         forward_optimizer = torch.optim.SGD([{'params': forward_params}], lr=args.lr,
                                     momentum=args.momentum,
-                                    weight_decay=1e-6)
+                                    weight_decay=1e-4)
         backward_optimizer = torch.optim.Adam([{'params': backward_params}], lr=args.b_lr,
-                                    weight_decay=1e-6)
+                                    weight_decay=1e-4)
 
         optimizer = MultipleOptimizer(forward_optimizer, backward_optimizer)
-        scheduler = StepLR(backward_optimizer, step_size=1, gamma=0.50)
+        # scheduler = StepLR(backward_optimizer, step_size=1, gamma=0.80)
 
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
