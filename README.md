@@ -50,7 +50,7 @@ under construction...
 
 ### Test Accuracy on CIFAR100
 
-*Below show the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).*
+*Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).*
 
 |               |  Top-1 Accuracy  |  Top-5 Accuracy  |
 | ------------- | ---------------- | ---------------- |
