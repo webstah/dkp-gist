@@ -27,7 +27,7 @@ As for **DKP**, the rules above remain the same, however <img src="https://rende
 <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - \delta_{k}^T\cdot a_{\ell - 1}"></p>
 
 While it does not seem to make a difference in our smaller network for training on CIFAR10, we found that by adding an additional term to our update rules for <img src="https://render.githubusercontent.com/render/math?math=B_{\ell}"> we could gain significant performance gains. The new update rules are as follows.
-<p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - (\delta_{k}^T\cdot a_{\ell - 1} + a_{k}^T\cdot \delta_{\ell - 1}"></p>
+<p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - (\delta_{k}^T\cdot a_{\ell - 1} \+ a_{k}^T\cdot\delta_{\ell - 1})"></p>
 
 #### Adressing Stability Issues with DKP and DFA
 under construction...
