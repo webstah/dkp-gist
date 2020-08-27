@@ -54,7 +54,7 @@ Below shows the results of just one trial per experiment after 90 epochs trained
 |     DFA       |      3.48% *     |      17.58% *    |
 |     BP        |      66.40%      |      88.75%      |
 
-<p>* DFA actually peaks at about 40% top-5 accuracy, but by the end of 90 epochs the network has completely degraded.</p>
+<p>* DFA actually peaks at about 17% top-1 accuracy and 40% top-5 accuracy, but by the end of 90 epochs the network has completely degraded.</p>
 
 #### References
 
