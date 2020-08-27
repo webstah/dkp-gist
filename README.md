@@ -36,7 +36,7 @@ under construction...
 
 ### Test Accuracy on CIFAR10
 
-*Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.*
+Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.
 
 |               |  Top-1 Accuracy  |
 | ------------- | ---------------- |
@@ -46,13 +46,15 @@ under construction...
 
 ### Test Accuracy on CIFAR100
 
-*Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).*
+Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).
 
 |               |  Top-1 Accuracy  |  Top-5 Accuracy  |
 | ------------- | ---------------- | ---------------- |
 |     DKP       |      33.45%      |      64.10%      |
-|     DFA       |    < 10.00%       |    < 25.00%      |
+|     DFA       |    <10.00% *     |    <25.00% *     |
 |     BP        |      66.40%      |      88.75%      |
+
+<p>* DFA actually peaks at about 40% top-5 accuracy, but by the end of 90 epochs the network has completely degraded.</p>
 
 #### References
 
