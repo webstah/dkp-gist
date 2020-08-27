@@ -79,7 +79,7 @@ class DFAHookFunction(autograd.Function):
             B_view = backward_weights.view(-1, prod(backward_weights.shape[1:]))
 
             grad_output_est = grad_at_output.mm(B_view)
-            grad_weights_B = 0.5 * grad_at_output.t().mm(layer_out_view) + 0.5 * network_output.t().mm(grad_output_est)
+            grad_weights_B = grad_at_output.t().mm(layer_out_view)
 
             return grad_output_est.view(grad_output.shape), grad_weights_B.view(backward_weights.shape), None, None, None
 
