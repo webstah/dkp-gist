@@ -44,7 +44,15 @@ under construction...
 |      DFA      | 61.02% ± 0.006   |
 |      BP       | 70.47% ± 0.004   |
 
+### Test Accuracy on CIFAR100
 
+*Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).*
+
+|               |  Top-1 Accuracy  |  Top-5 Accuracy  |
+| ------------- | ---------------- | ---------------- |
+|     DKP       |      33.45%      |      64.10%      |
+|     DFA       |    < 1.00%       |    < 10.00%      |
+|     BP        |      66.40%      |      88.75%      |
 
 #### References
 
