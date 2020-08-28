@@ -42,7 +42,7 @@ class DFATrainingHook(nn.Module):
         self.backward_weights = None
         if self.train_mode in ['DKP', 'DFA']:
             self.backward_weights = nn.Parameter(torch.Tensor(torch.Size(dim)), requires_grad=True)
-        if self.train_mode in ['BP', 'DFA']:
+        if self.train_mode in ['DFA']:
             self.backward_weights.requires_grad = False
 
     def forward(self, input, grad_at_output, network_output):
