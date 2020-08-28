@@ -83,4 +83,4 @@ class DFAHookFunction(autograd.Function):
 
             return grad_output_est.view(grad_output.shape), grad_weights_B.view(backward_weights.shape), None, None, None
 
-        return grad_output, None, None, None
+        return grad_output, None, None, None, None
