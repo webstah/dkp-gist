@@ -50,7 +50,7 @@ Below shows the results of just one trial per experiment after 90 epochs trained
 
 |               |  Top-1 Accuracy  |  Top-5 Accuracy  |
 | ------------- | ---------------- | ---------------- |
-|     DKP       |      33.45%      |      64.10%      |
+|     DKP       |      40.85%      |      71.46%      |
 |     DFA       |      3.48% *     |      17.58% *    |
 |     BP        |      66.40%      |      88.75%      |
 
