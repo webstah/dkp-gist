@@ -42,8 +42,10 @@ class DFATrainingHook(nn.Module):
         self.backward_weights = None
         if self.train_mode in ['DKP', 'DFA']:
             self.backward_weights = nn.Parameter(torch.Tensor(torch.Size(dim)), requires_grad=True)
+            torch.nn.init.zeros_(self.backward_weights)
         if self.train_mode in ['DFA']:
             self.backward_weights.requires_grad = False
+            torch.nn.init.kaiming_uniform_(self.backward_weights)
 
     def forward(self, input, grad_at_output, network_output):
         # if torch.cuda.current_device() == 0:
