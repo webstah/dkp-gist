@@ -47,6 +47,7 @@ Results below are an average of four randomly initialized trials trained for 50 
 ### Test Accuracy on CIFAR100
 
 Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).
+The backward weights in DFA uses Kaiming initialization, and in DKP, the backward weights are initialized as zero.
 
 |               |  Top-1 Accuracy  |  Top-5 Accuracy  |
 | ------------- | ---------------- | ---------------- |
