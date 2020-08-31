@@ -29,8 +29,7 @@ As for **DKP**, the rules above remain the same, however <img src="https://rende
 
 
 #### Adressing Stability Issues with DKP and DFA
-under construction...
-- importance of batch normalization
+- In the case of both DFA and DKP, batch normalization after each convolutional layer is absolutely necessary for the stability of the network during training.
 - weight decay and optimizer for backward weights
 - lr scheduler for updates to backward parameters is essential
 
