@@ -53,7 +53,6 @@ The backward weights in DFA uses Kaiming initialization, and in DKP, the backwar
 |     DKP       |     AlexNet      |      40.85%      |      71.46%      |
 |     DFA       |     AlexNet      |      14.15%      |      33.67%      |
 |     BP        |     AlexNet      |      66.40%      |      88.75%      |
-| ------------- | ---------------- | ---------------- | ---------------- |
 |     DFA       |      VGG-16      |      1%*         |      --.--%      |
 |     BP        |      VGG-16      |      75.2%*      |      --.--%      |
 
