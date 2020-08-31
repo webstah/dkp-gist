@@ -53,6 +53,11 @@ The backward weights in DFA uses Kaiming initialization, and in DKP, the backwar
 |     DKP       |     AlexNet      |      40.85%      |      71.46%      |
 |     DFA       |     AlexNet      |      14.15%      |      33.67%      |
 |     BP        |     AlexNet      |      66.40%      |      88.75%      |
+| ------------- | ---------------- | ---------------- | ---------------- |
+|     DFA       |      VGG-16      |      1%*         |      --.--%      |
+|     BP        |      VGG-16      |      75.2%*      |      --.--%      |
+
+<p>* Results for VGG-16 as reported by <a href="https://arxiv.org/pdf/1906.04554.pdf" target="_blank">Launay et al.</a> </p>
 
 
 #### References
@@ -61,3 +66,5 @@ The backward weights in DFA uses Kaiming initialization, and in DKP, the backwar
 Deep Neural Networks, Nøkland</a>
 - <a href="https://arxiv.org/pdf/1904.05391.pdf" target="_blank">Deep Learning without Weight Transport, Akrout et al.</a>
 - <a href="https://ieeexplore.ieee.org/document/374486" target="_blank">Backpropagation without Weight Transport, Kolen et al.</a>
+- <a href="https://arxiv.org/pdf/1906.04554.pdf" target="_blank">Principled Training of Neural Networks
+with Direct Feedback Alignment, Launay et al.</a>
