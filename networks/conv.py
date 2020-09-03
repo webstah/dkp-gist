@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from utils.gradfunctions import DFATrainingHook, OutputTrainingHook, TestTrainingHook
+from utils.gradfunctions import DFATrainingHook, OutputTrainingHook
 
 class ConvNetwork(nn.Module):
     def __init__(self, batch_size, train_mode, device):
