@@ -7,9 +7,10 @@ class CSVLogger:
         datetime = time.strftime('%y%m%d_%H%M%S')
         self.fieldnames = fieldnames
 
-        if not os.path.exists(os.path.relpath(os.path.join('results', args.train_mode))):
-            os.makedirs(os.path.relpath(os.path.join('results', args.train_mode)))
-        self.filename = os.path.relpath(os.path.join("results", args.train_mode, "{}.csv".format(datetime)))
+        filedir = os.path.relpath(os.path.join('results', args.train_mode))
+        if not os.path.exists(filedir):
+            os.makedirs(filedir)
+        self.filename = os.path.relpath(os.path.join(filedir, "{}.csv".format(datetime)))
 
         with open(self.filename, 'a', newline='') as csvfile:
             csvfile.write(str(args) + '\n')
