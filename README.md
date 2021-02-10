@@ -27,40 +27,6 @@ As for **DKP**, the rules above remain the same, however <img src="https://rende
 <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\nabla B_{\ell} = - \delta_{k}^T\cdot a_{\ell - 1}"></p>
 
 
-
-#### Adressing Stability Issues with DKP and DFA
-- In the case of both DFA and DKP, batch normalization after each convolutional layer is absolutely necessary for the stability of the network during training.
-- weight decay and optimizer for backward weights
-- lr scheduler for updates to backward parameters is essential
-
-### Test Accuracy on CIFAR10
-
-Results below are an average of four randomly initialized trials trained for 50 epochs with default parameters.
-
-|               |  Top-1 Accuracy  |
-| ------------- | ---------------- |
-|      DKP      | 67.52% ± 0.002   |
-|      DFA      | 61.02% ± 0.006   |
-|      BP       | 70.47% ± 0.004   |
-
-### Test Accuracy on CIFAR100
-
-Below shows the results of just one trial per experiment after 90 epochs trained on AlexNet with batch normalization (more trials will be run in the near future).
-The backward weights in DFA uses Kaiming initialization, and in DKP, the backward weights are initialized as zero.
-
-|               |   Architecture   |  Top-1 Accuracy  |  Top-5 Accuracy  |
-| ------------- | ---------------- | ---------------- | ---------------- |
-|     DKP       |     AlexNet      |      40.85%      |      71.46%      |
-|     DFA       |     AlexNet      |      14.15%      |      33.67%      |
-|     BP        |     AlexNet      |      66.40%      |      88.75%      |
-|     DFA       |      VGG-16      |      1%*         |      --.--%      |
-|     BP        |      VGG-16      |      75.2%*      |      --.--%      |
-
-<p>* Results for VGG-16 as reported by <a href="https://arxiv.org/pdf/1906.04554.pdf" target="_blank">Launay et al.</a> </p>
-
-
-#### References
-
 - <a href="http://papers.nips.cc/paper/6441-direct-feedback-alignment-provides-learning-in-deep-neural-networks.pdf" target="_blank">Direct Feedback Alignment Provides Learning in
 Deep Neural Networks, Nøkland</a>
 - <a href="https://arxiv.org/pdf/1904.05391.pdf" target="_blank">Deep Learning without Weight Transport, Akrout et al.</a>
